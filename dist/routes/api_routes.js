@@ -1,11 +1,21 @@
 import { Router } from 'express';
-import { createUser, addNoteForUser, getSingleUserById } from '../controllers/api_controller.js';
+// Import the getAllNotes controller function
+import { createUser, addNoteForUser, getSingleUserById, getAllNotes, deleteNoteForUser, addLikeToNote, getLikesForNote } from '../controllers/api_controller.js';
 const router = Router();
 // localhost:3333/api/users
-// Create a POST route that creates a user in the collection using your User model and sends back the user object as a JSON response
+// POST - Create a user
 router.post('/users', createUser);
 // Create a POST route that adds a note for a user
 router.post('/note', addNoteForUser);
-// Get a single user and their notes
-router.get('/user/:userId', getSingleUserById);
+// GET a single user and their notes
+router.get('/user/:user_id', getSingleUserById);
+// GET all notes
+// Pass in our getAllNotes function to the /notes route
+router.get('/notes', getAllNotes);
+// DELETE a note for a user
+router.delete('/note/:note_id', deleteNoteForUser);
+// PUT Add a like to a note
+router.put('/note/like', addLikeToNote);
+// GET Likes for a note
+router.get('/note/likes', getLikesForNote);
 export default router;
